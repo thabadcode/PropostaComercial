@@ -82,6 +82,7 @@ form {
     span {
         padding-left: 15px;
         position: absolute;
+        pointer-events: none;
     }
 }
 

@@ -11,13 +11,114 @@
         <a href="#viewer">Visualização</a>
     </header>
     <main>
-        <div id="form">
         <section id="forms">
+            <form class="general-form">
+                <h2>Informações gerais</h2>
 
-        </div>
-        <div id="viewer">
+                <label>
+                    <span class="label-text">Data</span>
+                    <input type="date" id="date">
+                </label>
 
-        </div>
+                <label>
+                    <span class="label-text">Cliente</span>
+                    <input id="client" placeholder="Razão social..." tabindex="1">
+                </label>
+
+                <label>
+                    <span class="label-text">Representante</span>
+                    <input id="representative" placeholder="Nome representante...">
+                </label>
+
+                <label>
+                    <span class="label-text">Condição de pagamento</span>
+                    <select id="payment">
+                        <option>Selecione...</option>
+                        <option value="À vista">À vista</option>
+                        <option value="Pagamento antecipado">Pagamento antecipado</option>
+                        <option value="Análise de crédito">Análise de crédito</option>
+                        <option value="Boleto 5 dias">Boleto 5 dias</option>
+                        <option value="Boleto 7 dias">Boleto 7 dias</option>
+                        <option value="Boleto 10 dias">Boleto 10 dias</option>
+                        <option value="Boleto 15 dias">Boleto 15 dias</option>
+                        <option value="Boleto 20 dias">Boleto 20 dias</option>
+                        <option value="Boleto 21 dias">Boleto 21 dias</option>
+                        <option value="Boleto 28 dias">Boleto 28 dias</option>
+                        <option value="Boleto 30 dias">Boleto 30 dias</option>
+                    </select>
+                </label>
+
+                <label>
+                    <span class="label-text">Observações</span>
+                    <textarea id="observations" placeholder="Ex.: Local da obra..."></textarea>
+                </label>
+            </form>
+
+            <form class="product-form">
+                <h2>Informações produto/serviço</h2>
+
+                <label>
+                    <span class="label-text">Produto/Serviço</span>
+                    <input id="product" list="suggestions-products">
+                    <datalist id="suggestions-products">
+                        <option value="MASSA ASFÁLTICA TIPO CBUQ FAIXA &quot;B&quot; (DNIT 031/2024-ES)">
+                        <option value="MASSA ASFÁLTICA TIPO CBUQ FAIXA &quot;C&quot; (DNIT 031/2024-ES)">
+                        <option value="CONCRETO ASFÁLTICO A FRIO FAIXA &quot;C&quot; - CAF (DNIT 031/2024-ES)">
+                        <option value="REJEITO MASSA ASFÁLTICA">
+                        <option value="TRANSPORTE DE MASSA ASFÁLTICA">
+                    </datalist>
+                </label>
+
+                <div class="pack-input">
+                    <label>
+                        <span class="label-text">Tipo Frete</span>
+                        <select>
+                            <option>Selecione...</option>
+                            <option value="FOB">FOB</option>
+                            <option value="CIF">CIF</option>
+                        </select>
+                    </label>
+
+                    <label class="custom-checkbox">
+                        <span class="label-text">CAP do cliente</span>
+                        <input id="cap" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label>
+                        <span class="label-text">Teor CAP (%)</span>
+                        <input id="content-cap" type="number" step="0.1" min="0" max="100" placeholder="Ex.: 4.7...">
+                    </label>
+                </div>
+
+                <div class="pack-input">
+                    <label>
+                        <span class="label-text">Unidade</span>
+                        <select id="unit">
+                            <option>Selecione...</option>
+                            <option value="Ton">Ton</option>
+                            <option value="Un">Un</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <span class="label-text">Quantidade</span>
+                        <input id="quantity" type="number" min="0" step="0.01" placeholder="Ex.: 200,00...">
+                    </label>
+
+                    <label>
+                        <span class="label-text">Valor</span>
+                        <input id="value" type="number" min="0" step="0.01" placeholder="Ex.: 180,00...">
+                    </label>
+                </div>
+
+                <button type="submit">Adicionar produto/serviço</button>
+            </form>
+
+        </section>
+            <!-- Pré-visualização do PDF da Proposta Comercial -->
+        <section id="viewer">
+        </section>
     </main>
 </body>
 </html>

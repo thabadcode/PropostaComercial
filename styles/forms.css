@@ -74,6 +74,17 @@ form {
     }
 }
 
+.money-symbol {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    span {
+        padding-left: 15px;
+        position: absolute;
+    }
+}
+
 .custom-checkbox {
     user-select: none;
     display: flex;

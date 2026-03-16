@@ -21,14 +21,6 @@ a {
     text-decoration: none;
 }
 
-header {
-    padding: 20px 10px;
-    background-color: var(--details-color);
-    span, a {
-        color: black;
-    }
-}
-
 body {
     background-color: var(--background-main);
 }

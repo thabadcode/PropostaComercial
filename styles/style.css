@@ -25,6 +25,11 @@ body {
     background-color: var(--background-main);
 }
 
+input[type="number"],
+input[inputmode="decimal"] {
+    text-align: right;
+}
+
 /* Para remover as setinhas de incremento/decremento dos campos de número */
 input[type=number] { /* Remove do Mozilla Firefox */
     -moz-appearance: textfield;

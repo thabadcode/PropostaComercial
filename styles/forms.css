@@ -62,7 +62,8 @@ form {
 
         &:focus {
             outline: none;
-            border-color: var(--details-color)
+            border-color: var(--details-color);
+            box-shadow: var(--neon-efect);
         }
     }
 
@@ -109,6 +110,7 @@ form {
 
     &:hover .checkmark {
         border: 2px solid var(--details-color);
+        box-shadow: var(--neon-efect);
     }
 
     input:checked + .checkmark {
@@ -136,6 +138,7 @@ form {
 
         &:hover {
             transform: scale(1.05);
+            box-shadow: var(--neon-efect);
         }
     }
 }

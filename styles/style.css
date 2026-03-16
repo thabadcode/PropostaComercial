@@ -4,6 +4,7 @@
     --background-secundary: #3e3e3e;
     --backgorund-input: #606060;
     --text-color: white;
+    --neon-efect: 0 0 2px 0 var(--details-color);
 }
 
 html {

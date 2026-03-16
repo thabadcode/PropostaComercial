@@ -133,12 +133,16 @@ form {
         border: none;
         border-radius: 30px;
         font-weight: bold;
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.2);
 
         &:hover {
             transform: scale(1.05);
             box-shadow: var(--neon-efect);
+        }
+
+        &:active {
+            filter: brightness(0.7);
         }
     }
 }

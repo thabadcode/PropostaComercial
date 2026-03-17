@@ -5,7 +5,7 @@
     gap: 15px;
 }
 
-form {
+.container-form {
     background-color: var(--background-secundary);
     display: flex;
     flex-direction: column;

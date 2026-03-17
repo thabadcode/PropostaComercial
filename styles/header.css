@@ -1,7 +1,26 @@
 header {
-    padding: 15px 10px;
-    background-color: var(--details-color);
-    span, a {
-        color: black;
+    background-color: var(--background-secundary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+
+    .header-brand,
+    .header-nav,
+    .header-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    img {
+        width: 65px;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 16pt;
     }
 }

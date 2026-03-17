@@ -139,10 +139,9 @@
     }
 }
 
-button {
-    width: 50%;
+button, a {
     align-self: center;
-    padding: 15px;
+    padding: 15px 20px;
     background-color: var(--details-color);
     border: none;
     border-radius: 30px;
@@ -150,6 +149,7 @@ button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.2);
     font-size: 14px;
+    color: black;
 
     &:hover {
         transform: scale(1.05);

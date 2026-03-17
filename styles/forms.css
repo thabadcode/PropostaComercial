@@ -134,28 +134,24 @@ form {
     }
 }
 
-.btn-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+button {
+    width: 50%;
+    align-self: center;
+    padding: 15px;
+    background-color: var(--details-color);
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.2);
+    font-size: 16px;
 
-    button {
-        width: 50%;
-        padding: 15px;
-        background-color: var(--details-color);
-        border: none;
-        border-radius: 30px;
-        font-weight: bold;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.2);
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: var(--neon-efect);
+    }
 
-        &:hover {
-            transform: scale(1.05);
-            box-shadow: var(--neon-efect);
-        }
-
-        &:active {
-            filter: brightness(0.7);
-        }
+    &:active {
+        filter: brightness(0.7);
     }
 }

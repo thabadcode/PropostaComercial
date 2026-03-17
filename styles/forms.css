@@ -159,6 +159,13 @@ button {
     &:active {
         filter: brightness(0.7);
     }
+
+    &:disabled {
+        filter: brightness(0.7);
+        pointer-events: none;
+        transform: none;
+        box-shadow: none;
+    }
 }
 
 .product-table {

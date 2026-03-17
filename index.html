@@ -21,12 +21,12 @@
                 <h2>Informações gerais</h2>
 
                 <label>
-                    <span class="label-text">Data</span>
+                    <span class="label-text">Data*</span>
                     <input type="date" id="date">
                 </label>
 
                 <label>
-                    <span class="label-text">Cliente</span>
+                    <span class="label-text">Cliente*</span>
                     <input id="client" placeholder="Razão social..." tabindex="1">
                 </label>
 
@@ -36,7 +36,7 @@
                 </label>
 
                 <label>
-                    <span class="label-text">Condição de pagamento</span>
+                    <span class="label-text">Condição de pagamento*</span>
                     <select id="payment">
                         <option>Selecione...</option>
                         <option value="À vista">À vista</option>
@@ -63,7 +63,7 @@
                 <h2>Informações produto/serviço</h2>
 
                 <label>
-                    <span class="label-text">Produto/Serviço</span>
+                    <span class="label-text">Produto/Serviço*</span>
                     <input id="product" list="suggestions-products">
                     <datalist id="suggestions-products">
                         <option value="MASSA ASFÁLTICA TIPO CBUQ FAIXA &quot;B&quot; (DNIT 031/2024-ES)">
@@ -98,7 +98,7 @@
 
                 <div class="pack-input">
                     <label>
-                        <span class="label-text">Unidade</span>
+                        <span class="label-text">Unidade*</span>
                         <select id="unit">
                             <option>Selecione...</option>
                             <option value="Ton">Ton</option>
@@ -107,18 +107,20 @@
                     </label>
 
                     <label>
-                        <span class="label-text">Quantidade</span>
+                        <span class="label-text">Quantidade*</span>
                         <input id="quantity" type="number" min="0" step="0.01" placeholder="Ex.: 200,00...">
                     </label>
 
                     <label>
-                        <span class="label-text">Valor unitário</span>
+                        <span class="label-text">Valor unitário*</span>
                         <span class="money-symbol">
                             <span>R$</span>
                             <input id="value" type="number" min="0" step="0.01" placeholder="Ex.: 180,00...">
                         </span>
                     </label>
                 </div>
+
+                <p>* Campos obrigatórios</p>
 
                 <button type="button">Adicionar produto/serviço</button>
             </form>

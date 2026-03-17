@@ -10,7 +10,7 @@ form {
     display: flex;
     flex-direction: column;
     padding: 15px 10px;
-    width: 600px;
+    max-width: 600px;
     gap: 10px;
     border-radius: 20px;
     color: var(--text-color);

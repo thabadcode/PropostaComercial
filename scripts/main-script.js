@@ -1,5 +1,5 @@
 const btnClear = document.getElementById("btn-clear");
-const btnPdf = document.getElementById("btn-creat-pdf");
+const btnPdf = document.getElementById("btn-create-pdf");
 const btnSetToday = document.getElementById("btn-set-today");
 
 const dateInput = document.getElementById("date");
@@ -14,7 +14,9 @@ const capCheckBox = document.getElementById("cap");
 const contentCapInput = document.getElementById("content-cap");
 const unitSelect = document.getElementById("unit");
 const quantityInput = document.getElementById("quantity");
-const valuePriceInput = document.getElementById("value-price");
+const valuePriceInput = document.getElementById("unit-price");
+
+const tableView = document.querySelector('.product-table tbody')
 
 btnClear.addEventListener("click", function() {
     dateInput.value = "";
@@ -30,6 +32,14 @@ btnClear.addEventListener("click", function() {
     unitSelect.value = "";
     quantityInput.value = "";
     valuePriceInput.value = "";
+
+    tableView.innerHTML = `
+        <tr>
+            <td colspan="6" style="text-align: center;">
+                Nenhum produto adicionado à proposta...
+            </td>
+        </tr>
+    `;
 
     // Implementar lógica para limpar lista de produtos
 })

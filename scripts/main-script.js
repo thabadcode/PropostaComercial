@@ -26,19 +26,26 @@ const tableView = document.querySelector('.product-table tbody')
 
 const fieldsToWatch = [
     productInput,
+    capCheckBox,
+    contentCapInput,
     unitSelect,
     quantityInput,
     valuePriceInput
 ]
 
 const checkFormValidity = () => {
-    const hasProduct = productInput.value.trim() !== "";
-    const hasUnit = unitSelect.value !== "";
+    contentCapInput.disabled = !capCheckBox.checked;
+    if (!capCheckBox.checked)  {
+        contentCapInput.value = "";
+    }
 
+    const hasProduct = productInput.value.trim() !== "";
+    let isCapValid = capCheckBox.checked ? controller.validateNumber(contentCapInput.value) !== null : true;
+    const hasUnit = unitSelect.value !== "";
     const qty = controller.validateNumber(quantityInput.value);
     const price = controller.validateNumber(valuePriceInput.value);
 
-    btnAddProduct.disabled = !(hasProduct && hasUnit && qty !== null && price !== null);
+    btnAddProduct.disabled = !(hasProduct && isCapValid && hasUnit && qty !== null && price !== null);
 };
 
 btnClear.addEventListener("click", function() {
@@ -71,14 +78,7 @@ btnClear.addEventListener("click", function() {
 
 btnSetToday.addEventListener("click", function() {
     dateInput.value = new Date().toISOString().split("T")[0];
-})
-
-capCheckBox.addEventListener("change", function() {
-    contentCapInput.disabled = !capCheckBox.checked;
-    if (!capCheckBox.checked)  {
-        contentCapInput.value = "";
-    }
-})
+});
 
 fieldsToWatch.forEach(filed => {
     filed.addEventListener("input", () => {

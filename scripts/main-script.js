@@ -16,7 +16,21 @@ const unitSelect = document.getElementById("unit");
 const quantityInput = document.getElementById("quantity");
 const valuePriceInput = document.getElementById("unit-price");
 
+const btnAddProduct = document.getElementById("btn-add-product");
+
 const tableView = document.querySelector('.product-table tbody')
+
+const fieldsToWatch = [
+    productInput,
+    unitSelect,
+    quantityInput,
+    valuePriceInput
+]
+
+const checkFormValidity = () => {
+    const allFilled = fieldsToWatch.every(field => field.value.trim() !== "");
+    btnAddProduct.disabled = !allFilled;
+};
 
 btnClear.addEventListener("click", function() {
     dateInput.value = "";
@@ -32,6 +46,8 @@ btnClear.addEventListener("click", function() {
     unitSelect.value = "";
     quantityInput.value = "";
     valuePriceInput.value = "";
+
+    btnAddProduct.disabled = true;
 
     tableView.innerHTML = `
         <tr>
@@ -54,3 +70,9 @@ capCheckBox.addEventListener("change", function() {
         contentCapInput.value = "";
     }
 })
+
+fieldsToWatch.forEach(filed => {
+    filed.addEventListener("input", () => {
+        checkFormValidity();
+    })
+});

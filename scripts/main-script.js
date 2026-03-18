@@ -1,3 +1,7 @@
+import {Controller} from "./controller.js";
+
+const controller = new Controller()
+
 const btnClear = document.getElementById("btn-clear");
 const btnPdf = document.getElementById("btn-create-pdf");
 const btnSetToday = document.getElementById("btn-set-today");
@@ -28,8 +32,13 @@ const fieldsToWatch = [
 ]
 
 const checkFormValidity = () => {
-    const allFilled = fieldsToWatch.every(field => field.value.trim() !== "");
-    btnAddProduct.disabled = !allFilled;
+    const hasProduct = productInput.value.trim() !== "";
+    const hasUnit = unitSelect.value !== "";
+
+    const isQtyValid = controller.validateNumber(quantityInput.value).type === "SUCCESS";
+    const isPriceValid = controller.validateNumber(valuePriceInput.value).type === "SUCCESS";
+
+    btnAddProduct.disabled = !(hasProduct && hasUnit && isQtyValid && isPriceValid);
 };
 
 btnClear.addEventListener("click", function() {

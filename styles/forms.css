@@ -42,7 +42,7 @@
         border-radius: 20px;
         border-style: solid;
         border-color: #303030;
-        transition: border-color 0.3s ease;
+        transition: all 0.3s ease;
         font-size: 11pt;
 
         &:focus {
@@ -56,7 +56,7 @@
             border-color: var(--backgorund-input);
         }
 
-        &:invalid {
+        &:invalid:not(:placeholder-shown) {
             border-color: red;
             box-shadow: 0 0 10px 0 rgb(255, 0, 0, 0.2);
         }

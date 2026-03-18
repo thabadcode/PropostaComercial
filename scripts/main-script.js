@@ -47,3 +47,10 @@ btnClear.addEventListener("click", function() {
 btnSetToday.addEventListener("click", function() {
     dateInput.value = new Date().toISOString().split("T")[0];
 })
+
+capCheckBox.addEventListener("change", function() {
+    contentCapInput.disabled = !capCheckBox.checked;
+    if (!capCheckBox.checked)  {
+        contentCapInput.value = "";
+    }
+})

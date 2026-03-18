@@ -1,5 +1,6 @@
 const btnClear = document.getElementById("btn-clear");
 const btnPdf = document.getElementById("btn-creat-pdf");
+const btnSetToday = document.getElementById("btn-set-today");
 
 const dateInput = document.getElementById("date");
 const clientInput = document.getElementById("client");

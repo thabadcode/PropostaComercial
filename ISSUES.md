@@ -6,6 +6,9 @@
 - [X] Estilizar tabela
 - [X] Implementar limpeza de campos
 - [X] Implementar a definição do "Hoje"
+- [X] Implementar habilitação dinâmica de inputs
+- [X] Estilizar input para dado inválido
+- [X] Implementar habilitação dinâmica
 
 ## 📝 À fazer
 - [ ] Corrigir layout das labels e inputs do formulário

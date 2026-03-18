@@ -40,7 +40,7 @@ const checkFormValidity = () => {
     }
 
     const hasProduct = productInput.value.trim() !== "";
-    let isCapValid = capCheckBox.checked ? controller.validateNumber(contentCapInput.value) !== null : true;
+    let isCapValid = capCheckBox.checked ? controller.validateNumber(contentCapInput.value, 10) !== null : true;
     const hasUnit = unitSelect.value !== "";
     const qty = controller.validateNumber(quantityInput.value);
     const price = controller.validateNumber(valuePriceInput.value);

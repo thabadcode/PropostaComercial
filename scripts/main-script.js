@@ -33,3 +33,7 @@ btnClear.addEventListener("click", function() {
 
     // Implementar lógica para limpar lista de produtos
 })
+
+btnSetToday.addEventListener("click", function() {
+    dateInput.value = new Date().toISOString().split("T")[0];
+})

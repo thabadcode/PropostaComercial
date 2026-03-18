@@ -41,14 +41,24 @@
         padding: 10px 13px;
         border-radius: 20px;
         border-style: solid;
-        border-color: var(--backgorund-input);
+        border-color: #303030;
         transition: border-color 0.3s ease;
         font-size: 11pt;
 
         &:focus {
             outline: none;
+
             border-color: var(--details-color);
             box-shadow: var(--neon-efect);
+        }
+
+        &:disabled {
+            border-color: var(--backgorund-input);
+        }
+
+        &:invalid {
+            border-color: red;
+            box-shadow: 0 0 10px 0 rgb(255, 0, 0, 0.2);
         }
     }
 

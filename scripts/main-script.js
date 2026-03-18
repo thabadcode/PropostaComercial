@@ -35,10 +35,10 @@ const checkFormValidity = () => {
     const hasProduct = productInput.value.trim() !== "";
     const hasUnit = unitSelect.value !== "";
 
-    const isQtyValid = controller.validateNumber(quantityInput.value).type === "SUCCESS";
-    const isPriceValid = controller.validateNumber(valuePriceInput.value).type === "SUCCESS";
+    const qty = controller.validateNumber(quantityInput.value);
+    const price = controller.validateNumber(valuePriceInput.value);
 
-    btnAddProduct.disabled = !(hasProduct && hasUnit && isQtyValid && isPriceValid);
+    btnAddProduct.disabled = !(hasProduct && hasUnit && qty !== null && price !== null);
 };
 
 btnClear.addEventListener("click", function() {

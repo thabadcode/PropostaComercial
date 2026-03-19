@@ -2,6 +2,11 @@ import {Controller} from "./controller.js";
 
 const controller = new Controller()
 
+const brNumber = new Intl.NumberFormat('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+});
+
 const btnClear = document.getElementById("btn-clear");
 const btnPdf = document.getElementById("btn-create-pdf");
 const btnSetToday = document.getElementById("btn-set-today");
@@ -59,13 +64,7 @@ btnClear.addEventListener("click", function() {
 
     controller.clearList();
 
-    tableView.innerHTML = `
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                Nenhum produto adicionado à proposta...
-            </td>
-        </tr>
-    `;
+    renderTableView();
 })
 
 btnSetToday.addEventListener("click", function() {
@@ -114,6 +113,7 @@ btnAddProduct.addEventListener("click", function() {
         case "SUCCESS":
             clearProductForm();
             productInput.focus();
+            renderTableView();
             break;
     }
 });
@@ -128,4 +128,34 @@ function clearProductForm() {
     valuePriceInput.value = "";
 
     btnAddProduct.disabled = true;
+}
+
+function renderTableView() {
+    const listProducts = controller.getList();
+    let tbodyHTML= "";
+
+    if (listProducts.length === 0) {
+        tbodyHTML += `
+        <tr>
+            <td colspan="6" style="text-align: center;">
+                Nenhum produto adicionado à proposta...
+            </td>
+        </tr>
+    `;
+    } else {
+        listProducts.forEach(product => {
+            tbodyHTML += `
+                <tr>
+                    <td>BÕTOES</td>
+                    <td>${product.endDescription}</td>
+                    <td>${product.unit}</td>
+                    <td>${brNumber.format(product.quantity)}</td>
+                    <td>R$ ${brNumber.format(product.unityPrice)}</td>
+                    <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
+                </tr>
+                
+            `;
+        });
+    }
+    tableView.innerHTML = tbodyHTML;
 }

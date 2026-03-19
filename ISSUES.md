@@ -10,6 +10,7 @@
 - [X] Estilizar input para dado inválido
 - [X] Implementar habilitação dinâmica
 - [X] Implementar lógica de adição de produtos
+- [X] Implementar a injeção de HTML para apresentar a lista de produtos
 
 ## 📝 À fazer
 - [ ] Corrigir layout das labels e inputs do formulário

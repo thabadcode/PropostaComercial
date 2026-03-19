@@ -1,3 +1,7 @@
+/** * Icons provided by Lucide (https://lucide.dev)
+ * License: ISC
+ */
+
 import {Controller} from "./controller.js";
 
 const controller = new Controller()
@@ -6,6 +10,31 @@ const brNumber = new Intl.NumberFormat('pt-BR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
 });
+
+const ICONS = {
+    trash:
+        `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="lucide lucide-trash2-icon lucide-trash-2">
+            <path d="M10 11v6"/>
+            <path d="M14 11v6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+            <path d="M3 6h18"/>
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>`,
+    up:
+        `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="lucide lucide-chevron-up-icon lucide-chevron-up">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>`,
+    down:
+        `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="lucide lucide-chevron-down-icon lucide-chevron-down">
+            <path d="m6 9 6 6 6-6"/>
+        </svg>`
+};
 
 const btnClear = document.getElementById("btn-clear");
 const btnPdf = document.getElementById("btn-create-pdf");
@@ -40,7 +69,7 @@ const fieldsToWatch = [
 
 const checkFormValidity = () => {
     contentCapInput.disabled = !capCheckBox.checked;
-    if (!capCheckBox.checked)  {
+    if (!capCheckBox.checked) {
         contentCapInput.value = "";
     }
 
@@ -132,9 +161,10 @@ function clearProductForm() {
 
 function renderTableView() {
     const listProducts = controller.getList();
-    let tbodyHTML= "";
+    const lengthListProduct = listProducts.length;
+    let tbodyHTML = "";
 
-    if (listProducts.length === 0) {
+    if (lengthListProduct === 0) {
         tbodyHTML += `
         <tr>
             <td colspan="6" style="text-align: center;">
@@ -143,17 +173,22 @@ function renderTableView() {
         </tr>
     `;
     } else {
-        listProducts.forEach(product => {
+        listProducts.forEach((product, index) => {
+            const isFirst = index === 0 ? "disabled" : "";
+            const isLast = index === lengthListProduct - 1 ? "disabled" : "";
             tbodyHTML += `
                 <tr>
-                    <td>BÕTOES</td>
+                    <td class="actions-cell">
+                        <button class="bt-up" data-index="${ index }" type="button" ${isFirst}>${ICONS.up}</button>
+                        <button class="bt-down" data-index="${ index }" type="button" ${isLast}>${ICONS.down}</button>
+                        <button class="bt-trash" data-index="${ index }" type="button">${ICONS.trash}</button>
+                    </td>
                     <td>${product.endDescription}</td>
                     <td>${product.unit}</td>
                     <td>${brNumber.format(product.quantity)}</td>
                     <td>R$ ${brNumber.format(product.unityPrice)}</td>
                     <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
                 </tr>
-                
             `;
         });
     }

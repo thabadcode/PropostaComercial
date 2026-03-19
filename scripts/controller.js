@@ -33,6 +33,7 @@ export class Controller {
         return { type: "SUCCESS" };
     }
 
-    clearList() { this.listProducts = []; }
     clearList() { this.#listProducts = []; }
+
+    getList() { return this.#listProducts; }
 }

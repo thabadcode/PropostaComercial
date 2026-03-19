@@ -32,4 +32,6 @@ export class Controller {
         this.listProducts.push(newProduct);
         return { type: "SUCCESS" };
     }
+
+    clearList() { this.listProducts = []; }
 }

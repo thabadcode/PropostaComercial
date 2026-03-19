@@ -57,6 +57,8 @@ btnClear.addEventListener("click", function() {
 
     clearProductForm();
 
+    controller.clearList();
+
     tableView.innerHTML = `
         <tr>
             <td colspan="6" style="text-align: center;">
@@ -64,8 +66,6 @@ btnClear.addEventListener("click", function() {
             </td>
         </tr>
     `;
-
-    // Implementar lógica para limpar lista de produtos
 })
 
 btnSetToday.addEventListener("click", function() {

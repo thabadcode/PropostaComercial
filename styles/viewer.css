@@ -1,0 +1,12 @@
+#viewer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#pdf-viewer {
+    width: 210mm;
+    height: 297mm;
+    background: white;
+}

@@ -72,8 +72,9 @@ btnSetToday.addEventListener("click", function() {
     dateInput.value = new Date().toISOString().split("T")[0];
 });
 
-fieldsToWatch.forEach(filed => {
-    filed.addEventListener("input", () => {
+fieldsToWatch.forEach(field => {
+    field.addEventListener("input", () => {
+        field.setCustomValidity("");
         checkFormValidity();
     })
 });

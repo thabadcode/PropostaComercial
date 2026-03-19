@@ -154,10 +154,14 @@ tableView.addEventListener("click", (event) => {
     const index = parseInt(btn.dataset.index);
     if (btn.classList.contains("bt-trash")) {
         controller.deleteProduct(index);
-    } else if (btn.classList.contains("bt-up")) {
-        controller.moveProduct(index, -1);
-    } else if (btn.classList.contains("bt-down")) {
-        controller.moveProduct(index, 1);
+    } else {
+        let offset = 1;
+        if (btn.classList.contains("bt-up")) offset = -1;
+        if (btn.classList.contains("bt-down")) offset = 1;
+        const result = controller.moveProduct(index, offset);
+
+        if (result) renderTableView();
+        else alert("Não é possível reordenar este item: limite da lista alcançado.");
     }
     renderTableView();
 });

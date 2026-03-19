@@ -1,3 +1,5 @@
+import {Product} from "./product-model.js";
+
 export class Controller {
     listProducts= [];
 

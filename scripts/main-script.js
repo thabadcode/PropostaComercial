@@ -85,3 +85,42 @@ fieldsToWatch.forEach(filed => {
         checkFormValidity();
     })
 });
+
+btnAddProduct.addEventListener("click", function() {
+    const result = controller.addProduct(
+        productInput.value,
+        portageSelect.value,
+        capCheckBox.checked,
+        contentCapInput.value,
+        unitSelect.value,
+        quantityInput.value,
+        valuePriceInput.value
+    );
+
+    switch (result.type) {
+        case "EMPTY_DESCRIPTION":
+            productInput.setCustomValidity("Produto não pode estar em branco. Digite a descrição do produto");
+            productInput.reportValidity();
+            break;
+        case "EMPTY_UNIT":
+            unitSelect.setCustomValidity("Unidade não pode estar em branco. Selecione uma unidade.");
+            unitSelect.reportValidity();
+            break;
+        case "INVALID_QUANTITY":
+            quantityInput.setCustomValidity("Quantidade inválida. Digite uma quantidade maior que 0.");
+            quantityInput.reportValidity();
+            break;
+        case "INVALID_PRICE":
+            valuePriceInput.setCustomValidity("Preço unitário inválido. Digite um Preço unitário maior que 0.");
+            valuePriceInput.reportValidity();
+            break;
+        case "INVALID_CAP":
+            contentCapInput.setCustomValidity("Teor inválido. Digite um Teor entre 0% e 11%.");
+            contentCapInput.reportValidity();
+            break;
+        case "SUCCESS":
+            clearProductForm();
+            productInput.focus();
+            break;
+    }
+});

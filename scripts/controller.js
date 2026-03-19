@@ -57,7 +57,9 @@ export class Controller {
     }
 
     deleteProduct(index) {
+        if (index < 0 || index >= this.#listProducts.length) return false;
         this.#totalPrice -= this.#listProducts[index].subtotalPrice;
         this.#listProducts.splice(index, 1);
+        return true;
     }
 }

@@ -154,7 +154,10 @@ tableView.addEventListener("click", (event) => {
 
     const index = parseInt(btn.dataset.index);
     if (btn.classList.contains("bt-trash")) {
-        controller.deleteProduct(index);
+        if (!controller.deleteProduct(index)) {
+            alert("Não há produtos/serviços adicionado. Impossível excluir item inexistente.");
+        }
+
     } else {
         let offset = 1;
         if (btn.classList.contains("bt-up")) offset = -1;

@@ -55,15 +55,7 @@ btnClear.addEventListener("click", function() {
     paymentSelect.value = "";
     observationsInput.value = "";
 
-    productInput.value = "";
-    portageSelect.value = "";
-    capCheckBox.checked = false;
-    contentCapInput.value = "";
-    unitSelect.value = "";
-    quantityInput.value = "";
-    valuePriceInput.value = "";
-
-    btnAddProduct.disabled = true;
+    clearProductForm();
 
     tableView.innerHTML = `
         <tr>
@@ -124,3 +116,15 @@ btnAddProduct.addEventListener("click", function() {
             break;
     }
 });
+
+function clearProductForm() {
+    productInput.value = "";
+    portageSelect.value = "";
+    capCheckBox.checked = false;
+    contentCapInput.value = "";
+    unitSelect.value = "";
+    quantityInput.value = "";
+    valuePriceInput.value = "";
+
+    btnAddProduct.disabled = true;
+}

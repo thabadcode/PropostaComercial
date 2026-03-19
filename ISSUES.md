@@ -9,6 +9,7 @@
 - [X] Implementar habilitação dinâmica de inputs
 - [X] Estilizar input para dado inválido
 - [X] Implementar habilitação dinâmica
+- [X] Implementar lógica de adição de produtos
 
 ## 📝 À fazer
 - [ ] Corrigir layout das labels e inputs do formulário
@@ -17,3 +18,4 @@
 - [ ] Implementar lógica de lista de produtos/serviços.
 - [ ] Estrutura DOM do PDF
 - [ ] Design do PDF
+- [ ] Revisar nome de variáveis e funções.

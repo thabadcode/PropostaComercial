@@ -57,6 +57,7 @@ const valuePriceInput = document.getElementById("unit-price");
 const btnAddProduct = document.getElementById("btn-add-product");
 
 const tableView = document.querySelector('.product-table tbody')
+const totalPrice = document.getElementsByClassName("total-price");
 
 const fieldsToWatch = [
     productInput,
@@ -185,12 +186,13 @@ function renderTableView() {
 
     if (lengthListProduct === 0) {
         tbodyHTML += `
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                Nenhum produto adicionado à proposta...
-            </td>
-        </tr>
-    `;
+            <tr>
+                <td colspan="6" style="text-align: center;">
+                    Nenhum produto adicionado à proposta...
+                </td>
+            </tr>
+        `;
+        Array.from(totalPrice).forEach(el => el.innerHTML = "R$ 0,00");
     } else {
         listProducts.forEach((product, index) => {
             const isFirst = index === 0 ? "disabled" : "";
@@ -210,6 +212,8 @@ function renderTableView() {
                 </tr>
             `;
         });
+        Array.from(totalPrice).forEach(el =>
+            el.innerHTML = `R$ ${brNumber.format(controller.getTotalPrice())}`);
     }
     tableView.innerHTML = tbodyHTML;
 }

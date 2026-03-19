@@ -196,12 +196,36 @@ button, a {
     overflow: hidden;
     border-radius: 20px;
 
-    th:nth-child(1) { width: 100px; }
+    th:nth-child(1) { width: 110px; }
     th:nth-child(2) { width: auto; word-wrap: break-word; }
     th:nth-child(3) { width: 80px;  }
     th:nth-child(4) { width: 120px; }
     th:nth-child(5) { width: 150px; }
     th:nth-child(6) { width: 150px; }
+
+    .actions-cell {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+
+        button {
+            border: none;
+            background: none;
+            color: black;
+            padding: 1px;
+            box-shadow: none;
+
+            &:hover {
+                color: var(--details-color);
+            }
+
+            &:disabled {
+                transform: none;
+                color: gray;
+            }
+        }
+    }
 
     th, td {
         padding: 10px;

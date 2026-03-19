@@ -1,7 +1,7 @@
 import {Product} from "./product-model.js";
 
 export class Controller {
-    listProducts= [];
+    #listProducts = [];
 
     validateNumber(input, max = Infinity) {
         const parsed = parseFloat(input);
@@ -29,9 +29,10 @@ export class Controller {
             validQty,
             validPrice,
             validQty * validPrice);
-        this.listProducts.push(newProduct);
+        this.#listProducts.push(newProduct);
         return { type: "SUCCESS" };
     }
 
     clearList() { this.listProducts = []; }
+    clearList() { this.#listProducts = []; }
 }

@@ -147,6 +147,21 @@ btnAddProduct.addEventListener("click", function() {
     }
 });
 
+tableView.addEventListener("click", (event) => {
+    const btn = event.target.closest("button");
+    if (!btn) return;
+
+    const index = parseInt(btn.dataset.index);
+    if (btn.classList.contains("bt-trash")) {
+        controller.deleteProduct(index);
+    } else if (btn.classList.contains("bt-up")) {
+        controller.moveProduct(index, -1);
+    } else if (btn.classList.contains("bt-down")) {
+        controller.moveProduct(index, 1);
+    }
+    renderTableView();
+});
+
 function clearProductForm() {
     productInput.value = "";
     portageSelect.value = "";

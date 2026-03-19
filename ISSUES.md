@@ -11,12 +11,12 @@
 - [X] Implementar habilitação dinâmica
 - [X] Implementar lógica de adição de produtos
 - [X] Implementar a injeção de HTML para apresentar a lista de produtos
+- [X] Implementar a reordenação/exclusão de produtos
 
 ## 📝 À fazer
 - [ ] Corrigir layout das labels e inputs do formulário
-- [ ] Refatorar CSS e HTML
+- [ ] Refatorar CSS, HTML e JS
 - [ ] Separar melhor arquivos CSS
-- [ ] Implementar lógica de lista de produtos/serviços.
-- [ ] Estrutura DOM do PDF
+- [ ] Estruturar DOM do PDF
 - [ ] Design do PDF
 - [ ] Revisar nome de variáveis e funções.

@@ -36,4 +36,17 @@ export class Controller {
     clearList() { this.#listProducts = []; }
 
     getList() { return this.#listProducts; }
+
+    moveProduct(index, offset) {
+        const targetIndex = index + offset;
+
+        if (targetIndex < 0 || targetIndex >= this.#listProducts.length) return false;
+        [this.#listProducts[index], this.#listProducts[targetIndex]] =
+            [this.#listProducts[targetIndex], this.#listProducts[index]];
+        return true;
+    }
+
+    deleteProduct(index) {
+        this.#listProducts.splice(index, 1);
+    }
 }

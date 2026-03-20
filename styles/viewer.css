@@ -31,7 +31,10 @@
     height: 297mm;
     background: white;
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
     padding: 10mm;
+    gap: 5mm;
 }
 
 #pdf-header {
@@ -61,5 +64,30 @@
     #enterprise-info {
         justify-content: right;
         font-size: 8pt;
+    }
+}
+
+#pdf-title {
+    font-size: 14pt;
+    background-color: var(--details-color);
+    width: 100%;
+    padding: 2mm;
+    text-align: center;
+}
+
+#pdf-top-body {
+    width: 100%;
+    display: flex;
+    color: black;
+    gap: 3mm;
+    font-size: 11pt;
+
+    #pdf-info-cliente {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #pdf-local-date {
+        margin-left: auto;
     }
 }

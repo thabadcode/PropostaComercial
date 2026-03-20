@@ -3,6 +3,7 @@
     grid-template-columns: 600px 1fr;
     padding: 15px;
     gap: 15px;
+    font-family: Arial, sans-serif;
 }
 
 .container-form {

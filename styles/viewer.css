@@ -1,12 +1,65 @@
+/* * Poppins Font Project
+ * Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+ * Licensed under the SIL Open Font License, Version 1.1.
+ * License available at: https://openfontlicense.org
+ */
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 #viewer {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    font-family: 'Poppins', sans-serif;
 }
 
 #pdf-viewer {
     width: 210mm;
     height: 297mm;
     background: white;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+    padding: 10mm;
+}
+
+#pdf-header {
+    background-color: black;
+    height: 25mm;
+    width: 100%;
+    color: white;
+    padding: 4mm;
+    display: flex;
+    flex-direction: row;
+    gap: 3mm;
+    align-items: center;
+
+    img {
+        height: 100%;
+        width: auto;
+    }
+
+    h1 {
+        font-size: 15pt;
+    }
+
+    h2 {
+        font-size: 10pt;
+    }
+
+    #enterprise-info {
+        justify-content: right;
+        font-size: 8pt;
+    }
 }

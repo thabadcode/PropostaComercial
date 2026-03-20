@@ -97,6 +97,8 @@ btnClear.addEventListener("click", function() {
     renderTableView();
 })
 
+btnPdf.addEventListener("click", function () { window.print(); });
+
 btnSetToday.addEventListener("click", function() {
     dateInput.value = new Date().toISOString().split("T")[0];
 });

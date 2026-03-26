@@ -29,6 +29,7 @@
 #pdf-viewer {
     width: 210mm;
     height: 297mm;
+    flex-shrink: 0;
     background: white;
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
     display: flex;
@@ -90,4 +91,87 @@
     #pdf-local-date {
         margin-left: auto;
     }
+}
+
+#pdf-info {
+    font-size: 9pt;
+    text-align: center;
+}
+
+#pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+
+    th:nth-child(1) { width: 0; } /* Deixar zerado gera um preenchimento */
+    th:nth-child(2) { width: auto; word-wrap: break-word; }
+    th:nth-child(3) { width: 0;  }
+    th:nth-child(4) { width: 17mm; }
+    th:nth-child(5) { width: 18mm; }
+    th:nth-child(6) { width: 36mm; }
+
+    thead, tfoot {
+        background-color: var(--details-color);
+        font-size: 10pt;
+    }
+
+    th, td {
+        border-style: solid;
+        border-width: 0.5mm;
+        padding: 0 1mm;
+    }
+
+    thead {
+        border-bottom: 3mm solid black;
+    }
+
+    tfoot {
+        border-top: 3mm solid black;
+
+    }
+
+    tbody {
+        font-size: 8pt;
+
+        td:nth-child(4),
+        td:nth-child(5),
+        td:nth-child(6) {
+            text-align: right;
+        }
+    }
+}
+
+#pdf-footer {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+#pdf-footer-left {
+    display: flex;
+    flex-direction: column;
+    font-size: 9pt;
+}
+
+#pdf-info-proposal, #pdf-contact {
+    display: flex;
+    flex-direction: column;
+    padding: 3mm 20mm 3mm 3mm;
+}
+
+#pdf-contact {
+    background-color: var(--details-color);
+}
+
+#pdf-slogan {
+    height: 40mm;
+    display: flex;
+    width: 100mm;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    font-size: 14pt;
+    font-weight: bold;
+    background-image: url("../assets/patio-usina.webp");
+    background-size: cover;
 }

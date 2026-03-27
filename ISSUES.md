@@ -16,10 +16,10 @@
 - [X] Design do PDF
 - [X] Alimentar informações da empresa no PDF
 - [X] Implementar injeção de texto no PDF
+- [X] Implementar injeção da tabela no PDF
+- [X] Definir área de impressão no CSS
 
 ## 📝 À fazer
-- [ ] Implementar injeção da tabela no PDF
-- [ ] Definir área de impressão no CSS
 - [ ] Corrigir layout das labels e inputs do formulário
 - [ ] Refatorar CSS, HTML e JS
 - [ ] Separar melhor arquivos CSS

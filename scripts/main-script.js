@@ -233,9 +233,6 @@ function renderTables() {
                     <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
                 </tr>
             `;
-        });
-
-        listProducts.forEach((product, index) => {
             tbodyPdfHTML += `
                 <tr>
                     <td>${index + 1}</td>

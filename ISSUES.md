@@ -12,11 +12,13 @@
 - [X] Implementar lógica de adição de produtos
 - [X] Implementar a injeção de HTML para apresentar a lista de produtos
 - [X] Implementar a reordenação/exclusão de produtos
+- [X] Estruturar DOM do PDF
+- [X] Design do PDF
 
 ## 📝 À fazer
+- [ ] Alimentar informações da empresa no PDF
 - [ ] Corrigir layout das labels e inputs do formulário
 - [ ] Refatorar CSS, HTML e JS
 - [ ] Separar melhor arquivos CSS
-- [ ] Estruturar DOM do PDF
-- [ ] Design do PDF
-- [ ] Revisar nome de variáveis e funções.
+- [ ] Revisar nome de variáveis e funções
+- [ ] Corrigir vulnerabilidade XSS

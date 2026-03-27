@@ -14,9 +14,12 @@
 - [X] Implementar a reordenação/exclusão de produtos
 - [X] Estruturar DOM do PDF
 - [X] Design do PDF
+- [X] Alimentar informações da empresa no PDF
+- [X] Implementar injeção de texto no PDF
 
 ## 📝 À fazer
-- [ ] Alimentar informações da empresa no PDF
+- [ ] Implementar injeção da tabela no PDF
+- [ ] Definir área de impressão no CSS
 - [ ] Corrigir layout das labels e inputs do formulário
 - [ ] Refatorar CSS, HTML e JS
 - [ ] Separar melhor arquivos CSS

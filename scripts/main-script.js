@@ -236,22 +236,22 @@ function renderTableView() {
     tableView.innerHTML = tbodyHTML;
 }
 
-dateInput.addEventListener("input", (event) => {
+dateInput.addEventListener("input", () => {
     dateOutputPdf.innerText = brDate.format(new Date(dateInput.value + "T12:00:00"));
 });
 
-clientInput.addEventListener("input", (event) => {
+clientInput.addEventListener("input", () => {
     clientOutputPdf.innerText = clientInput.value;
 });
 
-representativeInput.addEventListener("input", (event) => {
+representativeInput.addEventListener("input", () => {
     representativeOutputPdf.innerText = representativeInput.value === "" ? "" : "Att. " + representativeInput.value;
 });
 
-paymentSelect.addEventListener("change", (event) => {
+paymentSelect.addEventListener("change", () => {
     paymentOutputPdf.innerText = paymentSelect.value === "" ? "" : paymentSelect.value;
 });
 
-observationsInput.addEventListener("input", (event) => {
+observationsInput.addEventListener("input", () => {
     observationOutputPdf.innerText = observationsInput.value === "" ? "" : "Obs.: " + observationsInput.value;
 });

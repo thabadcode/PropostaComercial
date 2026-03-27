@@ -11,6 +11,12 @@ const brNumber = new Intl.NumberFormat('pt-BR', {
     maximumFractionDigits: 2
 });
 
+const brDate = new Intl.DateTimeFormat('pt-BR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+})
+
 const ICONS = {
     trash:
         `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -56,8 +62,9 @@ const valuePriceInput = document.getElementById("unit-price");
 
 const btnAddProduct = document.getElementById("btn-add-product");
 
-const tableView = document.querySelector('.product-table tbody')
+const tableView = document.querySelector('.product-table tbody');
 const totalPrice = document.getElementsByClassName("total-price");
+const dateOutputPdf = document.getElementById("pdf-date");
 
 const fieldsToWatch = [
     productInput,
@@ -101,6 +108,7 @@ btnPdf.addEventListener("click", function () { window.print(); });
 
 btnSetToday.addEventListener("click", function() {
     dateInput.value = new Date().toISOString().split("T")[0];
+    dateOutputPdf.innerText = brDate.format(new Date(dateInput.value + "T12:00:00"));
 });
 
 fieldsToWatch.forEach(field => {
@@ -222,3 +230,7 @@ function renderTableView() {
     }
     tableView.innerHTML = tbodyHTML;
 }
+
+dateInput.addEventListener("input", (event) => {
+    dateOutputPdf.innerText = brDate.format(new Date(dateInput.value + "T12:00:00"));
+});

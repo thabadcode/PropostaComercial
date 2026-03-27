@@ -69,6 +69,7 @@ const dateOutputPdf = document.getElementById("pdf-date");
 const clientOutputPdf = document.getElementById("pdf-client-name");
 const representativeOutputPdf = document.getElementById("pdf-representative");
 const paymentOutputPdf = document.getElementById("pdf-payment");
+const observationOutputPdf = document.getElementById("pdf-obs");
 
 const fieldsToWatch = [
     productInput,
@@ -249,4 +250,8 @@ representativeInput.addEventListener("input", (event) => {
 
 paymentSelect.addEventListener("change", (event) => {
     paymentOutputPdf.innerText = paymentSelect.value === "" ? "" : paymentSelect.value;
+});
+
+observationsInput.addEventListener("input", (event) => {
+    observationOutputPdf.innerText = observationsInput.value === "" ? "" : "Obs.: " + observationsInput.value;
 });

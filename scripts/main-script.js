@@ -258,6 +258,7 @@ dateInput.addEventListener("input", () => {
 
 clientInput.addEventListener("input", () => {
     clientOutputPdf.innerText = clientInput.value;
+    document.title = clientInput.value === "" ? "Proposta Comercial" : "Proposta Comercial - " + clientInput.value;
 });
 
 representativeInput.addEventListener("input", () => {

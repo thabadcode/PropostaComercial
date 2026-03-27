@@ -1,0 +1,26 @@
+@page {
+    size: A4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Impedir que os navegadores não remova os fundos coloridos*/
+* {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari, Edge */
+    print-color-adjust: exact !important; /* Firefox e Padrão */
+}
+
+header, #forms  {
+    display: none !important;
+}
+
+#viewer {
+    padding: 0;
+}
+
+#pdf-viewer {
+    width: 210mm;
+    height: 297mm;
+    box-shadow: none;
+    padding: 10mm;
+}

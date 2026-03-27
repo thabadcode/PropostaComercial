@@ -67,6 +67,7 @@ const totalPrice = document.getElementsByClassName("total-price");
 
 const dateOutputPdf = document.getElementById("pdf-date");
 const clientOutputPdf = document.getElementById("pdf-client-name");
+const representativeOutputPdf = document.getElementById("pdf-representative");
 
 const fieldsToWatch = [
     productInput,
@@ -239,4 +240,8 @@ dateInput.addEventListener("input", (event) => {
 
 clientInput.addEventListener("input", (event) => {
     clientOutputPdf.innerText = clientInput.value;
-})
+});
+
+representativeInput.addEventListener("input", (event) => {
+    representativeOutputPdf.innerText = representativeInput.value === "" ? "" : "Att. " + representativeInput.value;
+});

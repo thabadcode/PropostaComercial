@@ -71,6 +71,8 @@ const representativeOutputPdf = document.getElementById("pdf-representative");
 const paymentOutputPdf = document.getElementById("pdf-payment");
 const observationOutputPdf = document.getElementById("pdf-obs");
 
+const tablePdf = document.querySelector('#pdf-table tbody');
+
 const fieldsToWatch = [
     productInput,
     capCheckBox,
@@ -106,7 +108,7 @@ btnClear.addEventListener("click", function() {
 
     controller.clearList();
 
-    renderTableView();
+    renderTables();
 })
 
 btnPdf.addEventListener("click", function () { window.print(); });
@@ -158,7 +160,7 @@ btnAddProduct.addEventListener("click", function() {
         case "SUCCESS":
             clearProductForm();
             productInput.focus();
-            renderTableView();
+            renderTables();
             break;
     }
 });
@@ -179,10 +181,10 @@ tableView.addEventListener("click", (event) => {
         if (btn.classList.contains("bt-down")) offset = 1;
         const result = controller.moveProduct(index, offset);
 
-        if (result) renderTableView();
+        if (result) renderTables();
         else alert("Não é possível reordenar este item: limite da lista alcançado.");
     }
-    renderTableView();
+    renderTables();
 });
 
 function clearProductForm() {
@@ -197,13 +199,14 @@ function clearProductForm() {
     btnAddProduct.disabled = true;
 }
 
-function renderTableView() {
+function renderTables() {
     const listProducts = controller.getList();
     const lengthListProduct = listProducts.length;
-    let tbodyHTML = "";
+    let tbodyFormHTML = "";
+    let tbodyPdfHTML = "";
 
     if (lengthListProduct === 0) {
-        tbodyHTML += `
+        tbodyFormHTML = `
             <tr>
                 <td colspan="6" style="text-align: center;">
                     Nenhum produto adicionado à proposta...
@@ -211,11 +214,12 @@ function renderTableView() {
             </tr>
         `;
         Array.from(totalPrice).forEach(el => el.innerHTML = "R$ 0,00");
+        tbodyPdfHTML = tbodyFormHTML;
     } else {
         listProducts.forEach((product, index) => {
             const isFirst = index === 0 ? "disabled" : "";
             const isLast = index === lengthListProduct - 1 ? "disabled" : "";
-            tbodyHTML += `
+            tbodyFormHTML += `
                 <tr>
                     <td class="actions-cell">
                         <button class="bt-up" data-index="${ index }" type="button" ${isFirst}>${ICONS.up}</button>
@@ -230,10 +234,25 @@ function renderTableView() {
                 </tr>
             `;
         });
+
+        listProducts.forEach((product, index) => {
+            tbodyPdfHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${product.endDescription}</td>
+                    <td>${product.unit}</td>
+                    <td>${brNumber.format(product.quantity)}</td>
+                    <td>R$ ${brNumber.format(product.unityPrice)}</td>
+                    <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
+                </tr>
+            `;
+        });
+
         Array.from(totalPrice).forEach(el =>
             el.innerHTML = `R$ ${brNumber.format(controller.getTotalPrice())}`);
     }
-    tableView.innerHTML = tbodyHTML;
+    tableView.innerHTML = tbodyFormHTML;
+    tablePdf.innerHTML = tbodyPdfHTML;
 }
 
 dateInput.addEventListener("input", () => {

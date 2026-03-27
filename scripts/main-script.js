@@ -64,7 +64,9 @@ const btnAddProduct = document.getElementById("btn-add-product");
 
 const tableView = document.querySelector('.product-table tbody');
 const totalPrice = document.getElementsByClassName("total-price");
+
 const dateOutputPdf = document.getElementById("pdf-date");
+const clientOutputPdf = document.getElementById("pdf-client-name");
 
 const fieldsToWatch = [
     productInput,
@@ -234,3 +236,7 @@ function renderTableView() {
 dateInput.addEventListener("input", (event) => {
     dateOutputPdf.innerText = brDate.format(new Date(dateInput.value + "T12:00:00"));
 });
+
+clientInput.addEventListener("input", (event) => {
+    clientOutputPdf.innerText = clientInput.value;
+})

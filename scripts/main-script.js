@@ -1,3 +1,4 @@
+import { elements } from "./dom-map.js";
 import { Controller } from "./controller.js";
 import { ICONS } from "../assets/icons.js";
 
@@ -7,74 +8,42 @@ const brNumber = new Intl.NumberFormat('pt-BR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
 });
-
 const brDate = new Intl.DateTimeFormat('pt-BR', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
 })
 
-const btnClear = document.getElementById("btn-clear");
-const btnPdf = document.getElementById("btn-create-pdf");
-const btnSetToday = document.getElementById("btn-set-today");
-
-const dateInput = document.getElementById("date");
-const clientInput = document.getElementById("client");
-const representativeInput = document.getElementById("representative");
-const paymentSelect = document.getElementById("payment");
-const observationsInput = document.getElementById("observations");
-
-const productInput = document.getElementById("product");
-const portageSelect = document.getElementById("portage");
-const capCheckBox = document.getElementById("cap");
-const contentCapInput = document.getElementById("content-cap");
-const unitSelect = document.getElementById("unit");
-const quantityInput = document.getElementById("quantity");
-const valuePriceInput = document.getElementById("unit-price");
-
-const btnAddProduct = document.getElementById("btn-add-product");
-
-const tableView = document.querySelector('.product-table tbody');
-const totalPrice = document.getElementsByClassName("total-price");
-
-const dateOutputPdf = document.getElementById("pdf-date");
-const clientOutputPdf = document.getElementById("pdf-client-name");
-const representativeOutputPdf = document.getElementById("pdf-representative");
-const paymentOutputPdf = document.getElementById("pdf-payment");
-const observationOutputPdf = document.getElementById("pdf-obs");
-
-const tablePdf = document.querySelector('#pdf-table tbody');
-
 const fieldsToWatch = [
-    productInput,
-    capCheckBox,
-    contentCapInput,
-    unitSelect,
-    quantityInput,
-    valuePriceInput
+    elements.itemForm.productInput,
+    elements.itemForm.capCheckBox,
+    elements.itemForm.contentCapInput,
+    elements.itemForm.unitSelect,
+    elements.itemForm.quantityInput,
+    elements.itemForm.valuePriceInput
 ]
 
 const checkFormValidity = () => {
-    contentCapInput.disabled = !capCheckBox.checked;
-    if (!capCheckBox.checked) {
-        contentCapInput.value = "";
+    elements.itemForm.contentCapInput.disabled = !elements.itemForm.capCheckBox.checked;
+    if (!elements.itemForm.capCheckBox.checked) {
+        elements.itemForm.contentCapInput.value = "";
     }
 
-    const hasProduct = productInput.value.trim() !== "";
-    let isCapValid = capCheckBox.checked ? controller.validateNumber(contentCapInput.value, 10) !== null : true;
-    const hasUnit = unitSelect.value !== "";
-    const qty = controller.validateNumber(quantityInput.value);
-    const price = controller.validateNumber(valuePriceInput.value);
+    const hasProduct = elements.itemForm.productInput.value.trim() !== "";
+    const isCapValid = elements.itemForm.capCheckBox.checked ? controller.validateNumber(elements.itemForm.contentCapInput.value, 10) !== null : true;
+    const hasUnit = elements.itemForm.unitSelect.value !== "";
+    const qty = controller.validateNumber(elements.itemForm.quantityInput.value);
+    const price = controller.validateNumber(elements.itemForm.valuePriceInput.value);
 
-    btnAddProduct.disabled = !(hasProduct && isCapValid && hasUnit && qty !== null && price !== null);
+    elements.buttons.btnAddProduct.disabled = !(hasProduct && isCapValid && hasUnit && qty !== null && price !== null);
 };
 
-btnClear.addEventListener("click", function() {
-    dateInput.value = "";
-    clientInput.value = "";
-    representativeInput.value = "";
-    paymentSelect.value = "";
-    observationsInput.value = "";
+elements.buttons.btnClear.addEventListener("click", function() {
+    elements.generalForm.dateInput.value = "";
+    elements.generalForm.clientInput.value = "";
+    elements.generalForm.representativeInput.value = "";
+    elements.generalForm.paymentSelect.value = "";
+    elements.generalForm.observationsInput.value = "";
 
     clearProductForm();
 
@@ -83,11 +52,11 @@ btnClear.addEventListener("click", function() {
     renderTables();
 })
 
-btnPdf.addEventListener("click", function () { window.print(); });
+elements.buttons.btnPdf.addEventListener("click", function () { window.print(); });
 
-btnSetToday.addEventListener("click", function() {
-    dateInput.value = new Date().toISOString().split("T")[0];
-    dateOutputPdf.innerText = brDate.format(new Date(dateInput.value + "T12:00:00"));
+elements.buttons.btnSetToday.addEventListener("click", function() {
+    elements.generalForm.dateInput.value = new Date().toISOString().split("T")[0];
+    elements.pdf.dateOutputPdf.innerText = brDate.format(new Date(elements.generalForm.dateInput.value + "T12:00:00"));
 });
 
 fieldsToWatch.forEach(field => {
@@ -97,47 +66,47 @@ fieldsToWatch.forEach(field => {
     })
 });
 
-btnAddProduct.addEventListener("click", function() {
+elements.buttons.btnAddProduct.addEventListener("click", function() {
     const result = controller.addProduct(
-        productInput.value,
-        portageSelect.value,
-        capCheckBox.checked,
-        contentCapInput.value,
-        unitSelect.value,
-        quantityInput.value,
-        valuePriceInput.value
+        elements.itemForm.productInput.value,
+        elements.itemForm.portageSelect.value,
+        elements.itemForm.capCheckBox.checked,
+        elements.itemForm.contentCapInput.value,
+        elements.itemForm.unitSelect.value,
+        elements.itemForm.quantityInput.value,
+        elements.itemForm.valuePriceInput.value
     );
 
     switch (result.type) {
         case "EMPTY_DESCRIPTION":
-            productInput.setCustomValidity("Produto não pode estar em branco. Digite a descrição do produto");
-            productInput.reportValidity();
+            elements.itemForm.productInput.setCustomValidity("Produto não pode estar em branco. Digite a descrição do produto");
+            elements.itemForm.productInput.reportValidity();
             break;
         case "EMPTY_UNIT":
-            unitSelect.setCustomValidity("Unidade não pode estar em branco. Selecione uma unidade.");
-            unitSelect.reportValidity();
+            elements.itemForm.unitSelect.setCustomValidity("Unidade não pode estar em branco. Selecione uma unidade.");
+            elements.itemForm.unitSelect.reportValidity();
             break;
         case "INVALID_QUANTITY":
-            quantityInput.setCustomValidity("Quantidade inválida. Digite uma quantidade maior que 0.");
-            quantityInput.reportValidity();
+            elements.itemForm.quantityInput.setCustomValidity("Quantidade inválida. Digite uma quantidade maior que 0.");
+            elements.itemForm.quantityInput.reportValidity();
             break;
         case "INVALID_PRICE":
-            valuePriceInput.setCustomValidity("Preço unitário inválido. Digite um Preço unitário maior que 0.");
-            valuePriceInput.reportValidity();
+            elements.itemForm.valuePriceInput.setCustomValidity("Preço unitário inválido. Digite um Preço unitário maior que 0.");
+            elements.itemForm.valuePriceInput.reportValidity();
             break;
         case "INVALID_CAP":
-            contentCapInput.setCustomValidity("Teor inválido. Digite um Teor entre 0% e 11%.");
-            contentCapInput.reportValidity();
+            elements.itemForm.contentCapInput.setCustomValidity("Teor inválido. Digite um Teor entre 0% e 11%.");
+            elements.itemForm.contentCapInput.reportValidity();
             break;
         case "SUCCESS":
             clearProductForm();
-            productInput.focus();
+            elements.itemForm.productInput.focus();
             renderTables();
             break;
     }
 });
 
-tableView.addEventListener("click", (event) => {
+elements.table.tableView.addEventListener("click", (event) => {
     const btn = event.target.closest("button");
     if (!btn) return;
 
@@ -160,15 +129,15 @@ tableView.addEventListener("click", (event) => {
 });
 
 function clearProductForm() {
-    productInput.value = "";
-    portageSelect.value = "";
-    capCheckBox.checked = false;
-    contentCapInput.value = "";
-    unitSelect.value = "";
-    quantityInput.value = "";
-    valuePriceInput.value = "";
+    elements.itemForm.productInput.value = "";
+    elements.itemForm.portageSelect.value = "";
+    elements.itemForm.capCheckBox.checked = false;
+    elements.itemForm.contentCapInput.value = "";
+    elements.itemForm.unitSelect.value = "";
+    elements.itemForm.quantityInput.value = "";
+    elements.itemForm.valuePriceInput.value = "";
 
-    btnAddProduct.disabled = true;
+    elements.buttons.btnAddProduct.disabled = true;
 }
 
 function renderTables() {
@@ -185,7 +154,7 @@ function renderTables() {
                 </td>
             </tr>
         `;
-        Array.from(totalPrice).forEach(el => el.innerHTML = "R$ 0,00");
+        Array.from(elements.table.totalPrice).forEach(el => el.innerHTML = "R$ 0,00");
         tbodyPdfHTML = tbodyFormHTML;
     } else {
         listProducts.forEach((product, index) => {
@@ -217,30 +186,30 @@ function renderTables() {
             `;
         });
 
-        Array.from(totalPrice).forEach(el =>
+        Array.from(elements.table.totalPrice).forEach(el =>
             el.innerHTML = `R$ ${brNumber.format(controller.getTotalPrice())}`);
     }
-    tableView.innerHTML = tbodyFormHTML;
-    tablePdf.innerHTML = tbodyPdfHTML;
+    elements.table.tableView.innerHTML = tbodyFormHTML;
+    elements.pdf.tablePdf.innerHTML = tbodyPdfHTML;
 }
 
-dateInput.addEventListener("input", () => {
-    dateOutputPdf.innerText = brDate.format(new Date(dateInput.value + "T12:00:00"));
+elements.generalForm.dateInput.addEventListener("input", () => {
+    elements.pdf.dateOutputPdf.innerText = brDate.format(new Date(elements.generalForm.dateInput.value + "T12:00:00"));
 });
 
-clientInput.addEventListener("input", () => {
-    clientOutputPdf.innerText = clientInput.value;
-    document.title = clientInput.value === "" ? "Proposta Comercial" : "Proposta Comercial - " + clientInput.value;
+elements.generalForm.clientInput.addEventListener("input", () => {
+    elements.pdf.clientOutputPdf.innerText = elements.generalForm.clientInput.value;
+    document.title = elements.generalForm.clientInput.value === "" ? "Proposta Comercial" : "Proposta Comercial - " + elements.generalForm.clientInput.value;
 });
 
-representativeInput.addEventListener("input", () => {
-    representativeOutputPdf.innerText = representativeInput.value === "" ? "" : "Att. " + representativeInput.value;
+elements.generalForm.representativeInput.addEventListener("input", () => {
+    elements.pdf.representativeOutputPdf.innerText = elements.generalForm.representativeInput.value === "" ? "" : "Att. " + elements.generalForm.representativeInput.value;
 });
 
-paymentSelect.addEventListener("change", () => {
-    paymentOutputPdf.innerText = paymentSelect.value === "" ? "" : paymentSelect.value;
+elements.generalForm.paymentSelect.addEventListener("change", () => {
+    elements.pdf.paymentOutputPdf.innerText = elements.generalForm.paymentSelect.value === "" ? "" : elements.generalForm.paymentSelect.value;
 });
 
-observationsInput.addEventListener("input", () => {
-    observationOutputPdf.innerText = observationsInput.value === "" ? "" : "Obs.: " + observationsInput.value;
+elements.generalForm.observationsInput.addEventListener("input", () => {
+    elements.pdf.observationOutputPdf.innerText = elements.generalForm.observationsInput.value === "" ? "" : "Obs.: " + elements.generalForm.observationsInput.value;
 });

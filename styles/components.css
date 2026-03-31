@@ -190,17 +190,17 @@ input, select, textarea {
     button {
         border: none;
         background: none;
-        color: var(--text-secundary-color);
+        color: var(--details-color);
         padding: 1px;
         box-shadow: none;
 
         &:hover {
-            color: var(--details-color);
+
         }
 
         &:disabled {
+            opacity: 0.4;
             transform: none;
-            color: gray;
         }
     }
 }

@@ -23,6 +23,7 @@ a {
 
 body {
     background-color: var(--background-main);
+    font-family: Arial, sans-serif;
 }
 
 input[type="number"],

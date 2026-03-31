@@ -1,0 +1,206 @@
+a {
+    text-decoration: none;
+}
+
+button, a {
+    align-self: center;
+    padding: 10px 20px;
+    background-color: var(--details-color);
+    border: none;
+    border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.2);
+    font-size: 14px;
+    color: var(--text-secundary-color);
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: var(--neon-efect);
+    }
+
+    &:active {
+        filter: brightness(0.7);
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        pointer-events: none;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+input, select, textarea {
+    color: var(--text-color);
+    background-color: var(--backgorund-input-color);
+    padding: 10px 13px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: var(--border-input-color);
+    transition: all 0.3s ease;
+    font-size: 11pt;
+
+    &:focus {
+        outline: none;
+        border-color: var(--details-color);
+        box-shadow: var(--neon-efect);
+    }
+
+    &:disabled {
+        border-color: var(--backgorund-input-color);
+        opacity: 0.4;
+    }
+
+    &:invalid:not(:placeholder-shown) {
+        border-color: red;
+        box-shadow: 0 0 10px 0 rgb(255, 0, 0, 0.2);
+    }
+}
+
+.custom-checkbox {
+    user-select: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    input {
+        display: none;
+    }
+
+    .checkmark {
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+        background-color: var(--backgorund-input-color);
+        border: 2px solid transparent;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            background-color: var(--details-color);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+    }
+
+    &:hover .checkmark {
+        border: 2px solid var(--details-color);
+        box-shadow: var(--neon-efect);
+    }
+
+    input:checked + .checkmark {
+        border: 2px solid var(--details-color);
+        &:after {
+            opacity: 1;
+        }
+    }
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 20px;
+
+    th:nth-child(1) { width: 110px; }
+    th:nth-child(2) { width: auto; word-wrap: break-word; }
+    th:nth-child(3) { width: 80px;  }
+    th:nth-child(4) { width: 120px; }
+    th:nth-child(5) { width: 150px; }
+    th:nth-child(6) { width: 150px; }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 11pt;
+    }
+
+    thead, tfoot {
+        background-color: var(--details-color);
+        color: var(--text-secundary-color);
+        text-transform: uppercase;
+    }
+
+    thead {
+        border-bottom: 3px solid var(--background-secundary-color);
+
+        th {
+            border-right: 3px solid var(--background-secundary-color);
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+    }
+
+    tbody {
+        background-color: var(--backgorund-input-color);
+
+        td:nth-child(4), td:nth-child(5), td:nth-child(6),
+        th:nth-child(4), th:nth-child(5), th:nth-child(6) {
+            text-align: right;
+        }
+
+        tr {
+            border-bottom: 3px solid var(--background-secundary-color);
+            transition: all 0.3s ease;
+        }
+
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+            border-right: 3px solid var(--background-secundary-color);
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    tfoot {
+        th {
+            border-right: 3px solid var(--background-secundary-color);
+
+            &:last-child {
+                border-right: none;
+                text-align: right;
+            }
+        }
+    }
+}
+
+.actions-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    button {
+        border: none;
+        background: none;
+        color: var(--text-secundary-color);
+        padding: 1px;
+        box-shadow: none;
+
+        &:hover {
+            color: var(--details-color);
+        }
+
+        &:disabled {
+            transform: none;
+            color: gray;
+        }
+    }
+}

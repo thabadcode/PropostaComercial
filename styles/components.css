@@ -188,19 +188,9 @@ input, select, textarea {
     gap: 10px;
 
     button {
-        border: none;
         background: none;
         color: var(--details-color);
         padding: 1px;
         box-shadow: none;
-
-        &:hover {
-
-        }
-
-        &:disabled {
-            opacity: 0.4;
-            transform: none;
-        }
     }
 }

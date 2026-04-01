@@ -1,14 +1,12 @@
 :root {
-    --details-color: gold;
-    --background-main: #121212;
-    --background-secundary: #3e3e3e;
-    --backgorund-input: #606060;
-    --text-color: white;
+    --details-color: #FFD700FF;
+    --background-main-color: #121212;
+    --background-secundary-color: #3e3e3e;
+    --backgorund-input-color: #606060;
+    --border-input-color: #303030;
+    --text-color: #FFFFFF;
+    --text-secundary-color: #000000;
     --neon-efect: 0 0 2px 0 var(--details-color);
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 * {
@@ -17,13 +15,13 @@ html {
     box-sizing: border-box;
 }
 
-a {
-    text-decoration: none;
+body {
+    background-color: var(--background-main-color);
+    font-family: Arial, sans-serif;
 }
 
-body {
-    background-color: var(--background-main);
-    font-family: Arial, sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
 input[type="number"],

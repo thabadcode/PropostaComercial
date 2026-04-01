@@ -30,7 +30,7 @@
     width: 210mm;
     height: 297mm;
     flex-shrink: 0;
-    background: white;
+    background: var(--text-color);
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -39,10 +39,10 @@
 }
 
 #pdf-header {
-    background-color: black;
+    background-color: var(--text-secundary-color);
     height: 25mm;
     width: 100%;
-    color: white;
+    color: var(--text-color);
     padding: 2mm;
     display: flex;
     flex-direction: row;
@@ -61,13 +61,13 @@
     h2 {
         font-size: 10pt;
     }
+}
 
-    #enterprise-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: right;
-        font-size: 7.5pt;
-    }
+#enterprise-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    font-size: 7.5pt;
 }
 
 #pdf-title {
@@ -81,18 +81,18 @@
 #pdf-top-body {
     width: 100%;
     display: flex;
-    color: black;
+    color: var(--text-secundary-color);
     gap: 3mm;
     font-size: 11pt;
+}
 
-    #pdf-info-cliente {
-        display: flex;
-        flex-direction: column;
-    }
+#pdf-info-cliente {
+    display: flex;
+    flex-direction: column;
+}
 
-    #pdf-local-date {
-        margin-left: auto;
-    }
+#pdf-local-date {
+    margin-left: auto;
 }
 
 #pdf-info {
@@ -124,11 +124,11 @@
     }
 
     thead {
-        border-bottom: 3mm solid black;
+        border-bottom: 3mm solid var(--text-secundary-color);
     }
 
     tfoot {
-        border-top: 3mm solid black;
+        border-top: 3mm solid var(--text-secundary-color);
 
     }
 
@@ -155,7 +155,8 @@
     font-size: 9pt;
 }
 
-#pdf-info-proposal, #pdf-contact {
+#pdf-info-proposal,
+#pdf-contact {
     display: flex;
     flex-direction: column;
     padding: 3mm;

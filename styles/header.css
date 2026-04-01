@@ -1,19 +1,10 @@
 header {
-    background-color: var(--background-secundary);
+    background-color: var(--background-secundary-color);
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 10px 20px;
     gap: 10px;
-
-    .header-brand,
-    .header-nav,
-    .header-actions {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-    }
 
     img {
         width: 65px;
@@ -24,4 +15,13 @@ header {
         font-size: 16pt;
         color: var(--text-color);
     }
+}
+
+.header-brand,
+.header-nav,
+.header-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }

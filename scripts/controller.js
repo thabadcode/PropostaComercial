@@ -4,6 +4,11 @@ export class Controller {
     #listProducts = [];
     #totalPrice = 0;
 
+    constructor(listItens) {
+        this.#listProducts = listItens || [];
+        this.#totalPrice = this.#listProducts.reduce((total, product) => total + product.subtotalPrice, 0);
+    }
+
     validateNumber(input, max = Infinity) {
         const parsed = parseFloat(input);
         if (isNaN(parsed) || parsed < 0.01 || parsed > max) return null;

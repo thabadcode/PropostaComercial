@@ -1,8 +1,9 @@
 import { elements } from "./dom-map.js";
 import { Controller } from "./controller.js";
 import { ICONS } from "../assets/icons.js";
+import { stateStorage } from "./local-storage.js";
 
-const controller = new Controller()
+const controller = new Controller(stateStorage.loadStorage());
 
 const brNumber = new Intl.NumberFormat('pt-BR', {
     minimumFractionDigits: 2,
@@ -13,6 +14,8 @@ const brDate = new Intl.DateTimeFormat('pt-BR', {
     month: 'long',
     year: 'numeric'
 })
+
+renderTables();
 
 const fieldsToWatch = [
     elements.itemForm.productInput,
@@ -48,13 +51,15 @@ elements.buttons.btnClear.addEventListener("click", function() {
     clearProductForm();
 
     controller.clearList();
+    stateStorage.saveStorage(controller.getList());
 
     renderTables();
 })
 
-elements.buttons.btnPdf.addEventListener("click", function () { window.print(); });
+elements.buttons.btnPdf.addEventListener("click", function() { window.print(); });
 
 elements.buttons.btnSetToday.addEventListener("click", function() {
+    stateStorage.saveStorage(controller.getList());
     elements.generalForm.dateInput.value = new Date().toISOString().split("T")[0];
     elements.pdf.dateOutputPdf.innerText = brDate.format(new Date(elements.generalForm.dateInput.value + "T12:00:00"));
 });
@@ -102,6 +107,7 @@ elements.buttons.btnAddProduct.addEventListener("click", function() {
             clearProductForm();
             elements.itemForm.productInput.focus();
             renderTables();
+            stateStorage.saveStorage(controller.getList());
             break;
     }
 });
@@ -122,10 +128,10 @@ elements.table.tableView.addEventListener("click", (event) => {
         if (btn.classList.contains("bt-down")) offset = 1;
         const result = controller.moveProduct(index, offset);
 
-        if (result) renderTables();
-        else alert("Não é possível reordenar este item: limite da lista alcançado.");
+        if (!result) alert("Não é possível reordenar este item: limite da lista alcançado.");
     }
     renderTables();
+    stateStorage.saveStorage(controller.getList());
 });
 
 function clearProductForm() {
@@ -194,22 +200,27 @@ function renderTables() {
 }
 
 elements.generalForm.dateInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
     elements.pdf.dateOutputPdf.innerText = brDate.format(new Date(elements.generalForm.dateInput.value + "T12:00:00"));
 });
 
 elements.generalForm.clientInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
     elements.pdf.clientOutputPdf.innerText = elements.generalForm.clientInput.value;
     document.title = elements.generalForm.clientInput.value === "" ? "Proposta Comercial" : "Proposta Comercial - " + elements.generalForm.clientInput.value;
 });
 
 elements.generalForm.representativeInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
     elements.pdf.representativeOutputPdf.innerText = elements.generalForm.representativeInput.value === "" ? "" : "Att. " + elements.generalForm.representativeInput.value;
 });
 
 elements.generalForm.paymentSelect.addEventListener("change", () => {
+    stateStorage.saveStorage(controller.getList());
     elements.pdf.paymentOutputPdf.innerText = elements.generalForm.paymentSelect.value === "" ? "" : elements.generalForm.paymentSelect.value;
 });
 
 elements.generalForm.observationsInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
     elements.pdf.observationOutputPdf.innerText = elements.generalForm.observationsInput.value === "" ? "" : "Obs.: " + elements.generalForm.observationsInput.value;
 });

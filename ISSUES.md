@@ -18,9 +18,10 @@
 - [X] Implementar injeção de texto no PDF
 - [X] Implementar injeção da tabela no PDF
 - [X] Definir área de impressão no CSS
+- [X] Corrigir layout das labels e inputs do formulário
+- [X] Implementar persistência dos dados em cache
 
 ## 📝 À fazer
-- [ ] Corrigir layout das labels e inputs do formulário
 - [ ] Refatorar CSS, HTML e JS
 - [ ] Separar melhor arquivos CSS
 - [ ] Revisar nome de variáveis e funções

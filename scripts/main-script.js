@@ -4,7 +4,6 @@ import { ICONS } from "../assets/icons.js";
 import { stateStorage } from "./local-storage.js";
 
 const controller = new Controller(stateStorage.loadStorage());
-
 const brNumber = new Intl.NumberFormat('pt-BR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
@@ -13,10 +12,7 @@ const brDate = new Intl.DateTimeFormat('pt-BR', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
-})
-
-renderTables();
-
+});
 const fieldsToWatch = [
     elements.itemForm.productInput,
     elements.itemForm.capCheckBox,
@@ -25,6 +21,34 @@ const fieldsToWatch = [
     elements.itemForm.quantityInput,
     elements.itemForm.valuePriceInput
 ]
+
+renderTables();
+
+elements.generalForm.dateInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
+    elements.pdf.dateOutputPdf.innerText = brDate.format(new Date(elements.generalForm.dateInput.value + "T12:00:00"));
+});
+
+elements.generalForm.clientInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
+    elements.pdf.clientOutputPdf.innerText = elements.generalForm.clientInput.value;
+    document.title = elements.generalForm.clientInput.value === "" ? "Proposta Comercial" : "Proposta Comercial - " + elements.generalForm.clientInput.value;
+});
+
+elements.generalForm.representativeInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
+    elements.pdf.representativeOutputPdf.innerText = elements.generalForm.representativeInput.value === "" ? "" : "Att. " + elements.generalForm.representativeInput.value;
+});
+
+elements.generalForm.paymentSelect.addEventListener("change", () => {
+    stateStorage.saveStorage(controller.getList());
+    elements.pdf.paymentOutputPdf.innerText = elements.generalForm.paymentSelect.value === "" ? "" : elements.generalForm.paymentSelect.value;
+});
+
+elements.generalForm.observationsInput.addEventListener("input", () => {
+    stateStorage.saveStorage(controller.getList());
+    elements.pdf.observationOutputPdf.innerText = elements.generalForm.observationsInput.value === "" ? "" : "Obs.: " + elements.generalForm.observationsInput.value;
+});
 
 const checkFormValidity = () => {
     elements.itemForm.contentCapInput.disabled = !elements.itemForm.capCheckBox.checked;
@@ -134,6 +158,19 @@ elements.table.tableView.addEventListener("click", (event) => {
     stateStorage.saveStorage(controller.getList());
 });
 
+function clearInput(str) {
+    if (!str) return '';
+    if (typeof DOMPurify === 'undefined') {
+        console.warn('DOMPurify não carregado - usando fallback básico');
+        return str.replace(/<[^>]*>/g, '');
+    }
+    return DOMPurify.sanitize(str, {
+        ALLOWED_TAGS: [],
+        ALLOWED_ATTR: [],
+        ALLOW_DATA_ATTR: false
+    });
+}
+
 function clearProductForm() {
     elements.itemForm.productInput.value = "";
     elements.itemForm.portageSelect.value = "";
@@ -166,6 +203,14 @@ function renderTables() {
         listProducts.forEach((product, index) => {
             const isFirst = index === 0 ? "disabled" : "";
             const isLast = index === lengthListProduct - 1 ? "disabled" : "";
+            const dataProduct = `
+                <td>${clearInput(product.endDescription)}</td>
+                    <td>${clearInput(product.unit)}</td>
+                    <td>${brNumber.format(product.quantity)}</td>
+                    <td>R$ ${brNumber.format(product.unityPrice)}</td>
+                    <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
+                </tr>
+            `;
             tbodyFormHTML += `
                 <tr>
                     <td class="actions-cell">
@@ -173,22 +218,12 @@ function renderTables() {
                         <button class="bt-down" data-index="${ index }" type="button" ${isLast}>${ICONS.down}</button>
                         <button class="bt-trash" data-index="${ index }" type="button">${ICONS.trash}</button>
                     </td>
-                    <td>${product.endDescription}</td>
-                    <td>${product.unit}</td>
-                    <td>${brNumber.format(product.quantity)}</td>
-                    <td>R$ ${brNumber.format(product.unityPrice)}</td>
-                    <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
-                </tr>
+                    ${dataProduct}
             `;
             tbodyPdfHTML += `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${product.endDescription}</td>
-                    <td>${product.unit}</td>
-                    <td>${brNumber.format(product.quantity)}</td>
-                    <td>R$ ${brNumber.format(product.unityPrice)}</td>
-                    <td>R$ ${brNumber.format(product.subtotalPrice)}</td>
-                </tr>
+                    ${dataProduct}
             `;
         });
 
@@ -198,29 +233,3 @@ function renderTables() {
     elements.table.tableView.innerHTML = tbodyFormHTML;
     elements.pdf.tablePdf.innerHTML = tbodyPdfHTML;
 }
-
-elements.generalForm.dateInput.addEventListener("input", () => {
-    stateStorage.saveStorage(controller.getList());
-    elements.pdf.dateOutputPdf.innerText = brDate.format(new Date(elements.generalForm.dateInput.value + "T12:00:00"));
-});
-
-elements.generalForm.clientInput.addEventListener("input", () => {
-    stateStorage.saveStorage(controller.getList());
-    elements.pdf.clientOutputPdf.innerText = elements.generalForm.clientInput.value;
-    document.title = elements.generalForm.clientInput.value === "" ? "Proposta Comercial" : "Proposta Comercial - " + elements.generalForm.clientInput.value;
-});
-
-elements.generalForm.representativeInput.addEventListener("input", () => {
-    stateStorage.saveStorage(controller.getList());
-    elements.pdf.representativeOutputPdf.innerText = elements.generalForm.representativeInput.value === "" ? "" : "Att. " + elements.generalForm.representativeInput.value;
-});
-
-elements.generalForm.paymentSelect.addEventListener("change", () => {
-    stateStorage.saveStorage(controller.getList());
-    elements.pdf.paymentOutputPdf.innerText = elements.generalForm.paymentSelect.value === "" ? "" : elements.generalForm.paymentSelect.value;
-});
-
-elements.generalForm.observationsInput.addEventListener("input", () => {
-    stateStorage.saveStorage(controller.getList());
-    elements.pdf.observationOutputPdf.innerText = elements.generalForm.observationsInput.value === "" ? "" : "Obs.: " + elements.generalForm.observationsInput.value;
-});
